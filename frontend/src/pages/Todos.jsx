@@ -20,7 +20,7 @@ const Todos = () => {
       const userId = localStorage.getItem('userId');
 
       const response = await axios.get(
-        `http://localhost:9000/api/todos/${userId}`,
+        `https://tu-du-6lmi.onrender.com/api/todos/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -49,7 +49,10 @@ const Todos = () => {
 
   const markAsCompleted = async (id) => {
     try {
-      await axios.post(`http://localhost:9000/api/todos/${id}/completed`, {});
+      await axios.post(
+        `https://tu-du-6lmi.onrender.com/api/todos/${id}/completed`,
+        {}
+      );
       fetchTodos();
     } catch (error) {
       console.error('Error marking task as completed:', error);

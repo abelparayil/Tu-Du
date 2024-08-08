@@ -16,7 +16,7 @@ const AddTodo = () => {
     try {
       const userId = localStorage.getItem('userId');
 
-      await axios.post('http://localhost:9000/api/todos/add', {
+      await axios.post('https://tu-du-6lmi.onrender.com/api/todos/add', {
         title,
         description,
         completed,

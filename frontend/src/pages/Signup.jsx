@@ -14,7 +14,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://localhost:9000/api/users/register',
+        'https://tu-du-6lmi.onrender.com/api/users/register',
         {
           name,
           email,
