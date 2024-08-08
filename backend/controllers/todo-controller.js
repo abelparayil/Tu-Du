@@ -3,8 +3,7 @@ import User from '../models.js/User.js';
 
 export const addTodo = async (req, res) => {
   try {
-    const { title, description, completed } = req.body;
-    const userId = req.user._id;
+    const { title, description, completed, userId } = req.body;
     const todo = new Todo({
       title,
       description,
@@ -67,9 +66,13 @@ export const updateTodo = async (req, res) => {
 
 export const getTodos = async (req, res) => {
   try {
-    const userId = req.user._id;
+    const userId = req.params.userId;
+
     const user = await User.findById(userId).populate('todo');
-    res.json(user.todo);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json(user);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -95,13 +98,10 @@ export const getTodo = async (req, res) => {
 export const toggleTodo = async (req, res) => {
   try {
     const { id } = req.params;
-    const userId = req.user._id;
+    console.log(id);
     const todo = await Todo.findById(id);
     if (!todo) {
       return res.status(404).json({ message: 'Todo not found' });
-    }
-    if (todo.user.toString() !== userId.toString()) {
-      return res.status(401).json({ message: 'Not authorized' });
     }
     todo.completed = !todo.completed;
     await todo.save();

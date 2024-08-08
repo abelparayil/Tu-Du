@@ -13,6 +13,8 @@ const todoRouter = express.Router();
 todoRouter.post('/add', addTodo);
 todoRouter.delete('/delete', deleteTodo);
 todoRouter.put('/update', updateTodo);
-todoRouter.get('/all', getTodos);
+todoRouter.get('/:userId', getTodos);
 todoRouter.get('/single/:id', getTodo);
-todoRouter.post('/toggleComplete', toggleTodo);
+todoRouter.post('/:id/completed', toggleTodo);
+
+export default todoRouter;

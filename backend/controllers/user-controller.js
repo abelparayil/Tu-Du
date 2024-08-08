@@ -89,7 +89,7 @@ export const userLogin = async (req, res) => {
 
   return res
     .status(200)
-    .json({ message: 'Login successful', user: existingUser, token });
+    .json({ message: 'Login successful', userId: existingUser._id, token });
 };
 
 export const userResetPassword = async (req, res, next) => {

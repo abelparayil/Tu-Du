@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import userRouter from './routes/user-routes.js';
+import todoRouter from './routes/todo-routes.js';
 
 dotenv.config();
 
@@ -12,6 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/users', userRouter);
+app.use('/api/todos', todoRouter);
 
 mongoose
   .connect(
